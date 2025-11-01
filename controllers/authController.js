@@ -25,7 +25,7 @@ exports.login = async (req, res) => {
     }
 
     // 2. Check account status
-    if (user.status === 'Locked') {
+    if (user.status === 'locked') {
       return res.status(403).json({ // 403 Forbidden
         success: false,
         message: 'Account is locked. Please contact admin.'

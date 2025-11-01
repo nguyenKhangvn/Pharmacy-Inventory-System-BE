@@ -56,9 +56,9 @@ describe('authController.login (unit)', () => {
     expect(payload.message).toMatch(/Invalid username or password/i);
   });
 
-  it('403 - Account is locked (status = Locked)', async () => {
+  it('403 - Account is locked (status = locked)', async () => {
     User.findOne.mockResolvedValue({
-      status: 'Locked'
+      status: 'locked'
     });
 
     const req = mockReq({ username: 'admin', password: 'admin123' });
@@ -74,7 +74,7 @@ describe('authController.login (unit)', () => {
 
   it('401 - Invalid password', async () => {
     User.findOne.mockResolvedValue({
-      status: 'Active',
+      status: 'active',
       comparePassword: jest.fn().mockResolvedValue(false)
     });
 
@@ -95,7 +95,7 @@ describe('authController.login (unit)', () => {
       username: 'admin',
       email: 'admin@pis.local',
       role: 'Pharmacist',
-      status: 'Active',
+      status: 'active',
       comparePassword: jest.fn().mockResolvedValue(true),
       save: jest.fn().mockResolvedValue(true)
     };
